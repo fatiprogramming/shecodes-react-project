@@ -35,6 +35,12 @@ function Weather() {
     axios.get(apiUrl).then(displayTemperature);
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      search(event);
+    }
+  };
+
   const getForecast = (city) => {
     const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then((response) => {
@@ -57,6 +63,7 @@ function Weather() {
               className='search-input'
               id='search-input'
               onChange={(e) => setCity(e.target.value)}
+              onKeyPress={handleKeyPress}
             />
             <input type='submit' value='Search' className='search-button' />
           </form>
