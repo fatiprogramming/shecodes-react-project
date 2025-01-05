@@ -4,6 +4,7 @@ import './styles.css';
 
 function Weather() {
   const [city, setCity] = useState('');
+  const [inputValue, setInputValue] = useState('');
   const [temperature, setTemperature] = useState(null);
   const [weatherDetails, setWeatherDetails] = useState('');
   const [icon, setIcon] = useState('');
@@ -31,7 +32,8 @@ function Weather() {
 
   const search = (event) => {
     event.preventDefault();
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    setCity(inputValue);
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayTemperature);
   };
 
@@ -62,7 +64,7 @@ function Weather() {
               required
               className='search-input'
               id='search-input'
-              onChange={(e) => setCity(e.target.value)}
+              onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={handleKeyPress}
             />
             <input type='submit' value='Search' className='search-button' />
@@ -150,3 +152,4 @@ function Weather() {
 }
 
 export default Weather;
+
