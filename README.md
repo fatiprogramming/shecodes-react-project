@@ -1,3 +1,6 @@
+# IMPORTANT
+# The project is based on my Weather App from SheCodes Responsive course. Images and weather prompts may take a little time to load. # https://reactprojectshecodesweatherapp.netlify.app/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
