@@ -8,6 +8,7 @@ function Weather() {
   const [weatherDetails, setWeatherDetails] = useState('');
   const [icon, setIcon] = useState('');
   const [forecast, setForecast] = useState([]);
+  const [searchPerformed, setSearchPerformed] = useState(false);
 
   const apiKey = '5863935ee9cca4c02ed68203f807c65b';
 
@@ -25,6 +26,7 @@ function Weather() {
       `, humidity is ${humidity}% and wind speed is ${windSpeed} m/s`
     );
     getForecast(city);
+    setSearchPerformed(true);
   };
 
   const search = (event) => {
@@ -63,7 +65,7 @@ function Weather() {
           <div className='current-weather'>
             <div>
               <h1 className='current-city' id='current-city'>
-                {city || 'Enter a city'}
+                {searchPerformed ? city : 'Enter a city'}
               </h1>
               <p className='current-details'>
                 <span id='current-date'>{new Date().toLocaleString()}</span>
@@ -71,7 +73,7 @@ function Weather() {
               </p>
             </div>
             <div className='current-temperature'>
-              {city && (
+              {searchPerformed && (
                 <>
                   <span>
                     <img
