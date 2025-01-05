@@ -46,12 +46,19 @@ function Weather() {
   const getForecast = (city) => {
     const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then((response) => {
-      const today = new Date().toLocaleDateString();
+      const today = new Date();
+      const uniqueDays = new Set();
       const filteredForecast = response.data.list.filter((day) => {
-        const date = new Date(day.dt * 1000).toLocaleDateString();
-        return date >= today; // Incluir hoy y días futuros
+        const date = new Date(day.dt * 1000);
+        const dayString = date.toLocaleDateString('en-US', { weekday: 'short' });
+        if (date >= today && !uniqueDays.has(dayString)) {
+          uniqueDays.add(dayString);
+          return true;
+        }
+        return false;
       });
 
+     
       setForecast(filteredForecast.slice(0, 5));
     });
   };
