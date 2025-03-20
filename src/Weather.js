@@ -156,7 +156,7 @@ function Weather() {
               {' '}
               https://github.com/fatiprogramming/shecodes-react-project
             </a>
-            on GitHub and hosted on Netlify
+             on GitHub and hosted on Netlify
           </p>
         </footer>
       </div>
